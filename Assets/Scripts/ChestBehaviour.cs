@@ -7,10 +7,11 @@ public class ChestBehaviourScript : MonoBehaviour
 
     public Animator animator;
     public AudioClip chestSound;
+    public GameObject ui;
     // Start is called before the first frame update
     void Start()
     {
-        
+        HideUI();
     }
 
     // Update is called once per frame
@@ -25,6 +26,21 @@ public class ChestBehaviourScript : MonoBehaviour
         {
             animator.SetTrigger("Open");
             gameObject.gameObject.GetComponent<AudioSource>().PlayOneShot(chestSound);
+            showUI();
         }
+    }
+
+    public void HideUI()
+    {
+        ui.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void showUI()
+    {
+        ui.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
